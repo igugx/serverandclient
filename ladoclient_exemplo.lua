@@ -16,7 +16,7 @@ function server.sendToServer(token, cotent, successFunction, timeoutFunction)
 end
 
   
-function message(content)
+function message(content) -- em string exemplo msgid:{id:100, data:"blockshoot"}
     if content:sub(1,6) == "msgid:"then
       local content = json.decode(content:sub(7))
       local message_id = content.id
