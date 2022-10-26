@@ -39,3 +39,6 @@ function server.update(deltaTime)
       end
     end
 end
+
+
+return server
