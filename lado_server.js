@@ -1,7 +1,6 @@
 // chame essa funçao para cada mensagem enviada pelos clients
 function decodeData(data) // em string example msgid:{id:100, data:"blockshoot"} // retorna o id e o conteudo
 {
-
   if (data.startsWith("msgid:")) {
     try {
       let content = JSON.stringify( data.substring(content, 6) )
