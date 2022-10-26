@@ -3,7 +3,7 @@ local json = require "json"
 
 server.orderedMessages = {}
 
-
+local MAGIC_BYTES = "\88\11"
 
 function sendToServer(content)
   -- fazer a implementaçao de enviar pro seu server
@@ -17,7 +17,7 @@ function server.sendToServer(token, content, successFunction, timeoutFunction)
       timeoutFunction = timeoutFUnction,
       elapsedtIME = 3
    }
-   local gotoserver = "msgid:"..json.encode({ -- vai formar algo como msgid:{ id:100, data:"blockshoot"}
+   local gotoserver = MAGIC_BYTES..json.encode({ -- vai formar algo como msgid:{ id:100, data:"blockshoot"}
         id = id,
         data = content
    })
@@ -26,7 +26,7 @@ end
 
  -- chame essa funçao quando receber uma mensagem vindo do server
 function message(content) -- em string exemplo msgid:{id:100, data:"blockshoot"}
-    if content:sub(1,6) == "msgid:"then
+    if content:sub(1, #MAGIC_BYTES) == MAGIC_BYTES then
       local content = pcall(json.decode, content:sub(7) )
       if content then -- evitar ruidos vindo do servidor
         local message_id = content.id
