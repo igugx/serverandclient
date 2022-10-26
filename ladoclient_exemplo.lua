@@ -23,7 +23,7 @@ function message(content) -- em string exemplo msgid:{id:100, data:"blockshoot"}
       local data = content.data
       for i,v in ipairs(server.orderedMessages) then
         if message_id == v.id then
-          v.successFunction() -- essa ira invocar a funçao caso use uma engine como defold seja preferivei fazer o msg.port na url do gameobject..
+          v.successFunction() -- essa ira invocar a funçao caso use uma engine como defold seja preferivei fazer o msg.post na url do gameobject..
           table.remove(server.orderedMessages, i)
         end
       end
