@@ -5,14 +5,23 @@ server.orderedMessages = {}
 
 
 
+function sendToServer(content)
+  -- fazer a implementaçao de enviar pro seu server
+end
 
-function server.sendToServer(token, cotent, successFunction, timeoutFunction)
+function server.sendToServer(token, content, successFunction, timeoutFunction)
+  local id = math.random(0,100000) -- inseguro vc deve implementar seu proprio gerador de id que vai colocar um id unico ja que o random pode cair no mesmo valor...
   table.insert(server.orderedMessages, {
-      id = math.random(0,10000),
+      id = id,
       successFunction = successFUnction,
       timeoutFunction = timeoutFUnction,
       elapsedtIME = 3
-    }
+   }
+   local gotoserver = "msgid:"..json.encode({ -- vai formar algo como msgid:{ id:100, data:"blockshoot"}
+        id = id,
+        data = content
+   })
+   sendToServer(gotoserver)
 end
 
  -- chame essa funçao quando receber uma mensagem vindo do server
