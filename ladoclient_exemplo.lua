@@ -43,7 +43,7 @@ end
 
 function server.update(deltaTime) -- deve ser atualizada com uma certa frequencia.
     for i,v in ipairs(server.orderedMessages) do
-      v.elapsedTime = t.elapsedTime - deltaTime
+      v.elapsedTime = v.elapsedTime - deltaTime
       if ( v.elapsedTime < 0 ) then
         if v.timeoutFunction then
           v.timeoutFunction()
