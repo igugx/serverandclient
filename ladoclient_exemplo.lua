@@ -41,11 +41,13 @@ function message(content) -- em string exemplo msgid:{id:100, data:"blockshoot"}
     end
 end
 
-function server.update(deltaTime)
+function server.update(deltaTime) -- deve ser atualizada com uma certa frequencia.
     for i,v in ipairs(server.orderedMessages) do
       v.elapsedTime = t.elapsedTime - deltaTime
       if ( v.elapsedTime < 0 ) then
-        v.timeoutFunction()
+        if v.timeoutFunction then
+          v.timeoutFunction()
+        end
         table.remove(server.orderedMessages, i)
       end
     end
