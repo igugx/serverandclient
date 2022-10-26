@@ -18,13 +18,15 @@ end
  -- chame essa funçao quando receber uma mensagem vindo do server
 function message(content) -- em string exemplo msgid:{id:100, data:"blockshoot"}
     if content:sub(1,6) == "msgid:"then
-      local content = json.decode(content:sub(7))
-      local message_id = content.id
-      local data = content.data
-      for i,v in ipairs(server.orderedMessages) then
-        if message_id == v.id then
-          v.successFunction() -- essa ira invocar a funçao caso use uma engine como defold seja preferivei fazer o msg.post na url do gameobject..
-          table.remove(server.orderedMessages, i)
+      local content = pcall(json.decode, content:sub(7) )
+      if content then -- evitar ruidos vindo do servidor
+        local message_id = content.id
+        local data = content.data
+        for i,v in ipairs(server.orderedMessages) then
+          if message_id == v.id then
+            v.successFunction() -- essa ira invocar a funçao caso use uma engine como defold seja preferivei fazer o msg.post na url do gameobject..
+            table.remove(server.orderedMessages, i)
+          end
         end
       end
     end
