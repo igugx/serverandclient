@@ -32,7 +32,7 @@ if state then -- evitar ruidos vindo do servidor
 	local data = content.data
 	for i,v in ipairs(client.orderedMessages) do
 		if message_id == v.id then
-			v.successFunction() -- essa ira invocar a funçao caso use uma engine como defold seja preferivei fazer o msg.post na url do gameobject..
+			v.successFunction(data) -- essa ira invocar a funçao caso use uma engine como defold seja preferivei fazer o msg.post na url do gameobject..
 			table.remove(client.orderedMessages, i)
 		end
 	end
