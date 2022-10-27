@@ -14,7 +14,7 @@ function client.sendToServer(content, successFunction, timeoutFunction)
 		id = id,
 		successFunction = successFunction,
 		timeoutFunction = timeoutFunction,
-		elapsedtIME = 3
+		elapsedTime = 3
 	})
 	local gotoserver = MAGIC_BYTES .. json.encode({ -- vai formar algo como msgid:{ id:100, data:"blockshoot"}
 	id = id,
